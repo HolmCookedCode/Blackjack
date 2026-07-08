@@ -17,5 +17,15 @@ namespace BlackJack.Model {
             Id = _nextId++;
             Bankroll = bankRoll;
         }
+
+        public void Bet() {
+            Bankroll -= 10M;
+        }
+
+        public void DisplayCards() {
+            foreach (Card card in Cards) {
+                Console.WriteLine($"{card.Rank} of {card.Suite}");
+            }
+        }
     }
 }

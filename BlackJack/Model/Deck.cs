@@ -18,12 +18,12 @@ namespace BlackJack.Model {
                 }
             }
         }
-        public void Deal(Player player, bool faceUp) { 
-            // TODO
-        }
-
-        public void Hit() { 
-            // TODO
+        public void Deal(Player player, bool revealed = true) { 
+            int n = Cards.Count - 1; // last position
+            Card drawnCard = Cards[n];
+            drawnCard.Revealed = revealed;
+            Cards.RemoveAt(n);
+            player.Cards.Add(drawnCard);
         }
 
         public void Shuffle() {
@@ -37,12 +37,6 @@ namespace BlackJack.Model {
                 var cardValue = Cards[randSpot]; 
                 Cards[randSpot] = Cards[endPointer]; 
                 Cards[endPointer] = cardValue; 
-            }
-        }
-
-        public void Display() {
-            foreach (Card card in Cards) {
-                Console.WriteLine($"{card.Rank} of {card.Suite}");
             }
         }
     }
