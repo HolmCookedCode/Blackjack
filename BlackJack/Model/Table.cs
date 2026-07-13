@@ -33,5 +33,10 @@ namespace BlackJack.Model {
                 player.Bet();
             }
         }
+
+        public void DisplayDealerCards() {
+            Console.WriteLine("Dealer Cards:");
+            Dealer.DisplayCards();
+        }
     }
 }

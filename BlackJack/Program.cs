@@ -10,6 +10,7 @@ while (playing) {
     // place bet, deal starting cards
     table.SetupGame();
     table.PlaceBets();
+    table.DisplayDealerCards();
 
     bool hitOrStand = true;
     bool busted = false;

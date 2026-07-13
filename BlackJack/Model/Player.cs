@@ -19,9 +19,9 @@ namespace BlackJack.Model {
         }
 
         public void Bet() {
-            Bankroll -= 10M;
-            Console.WriteLine("Bet $10.00.");
             DisplayBankroll();
+            Bankroll -= 10M;
+            Console.WriteLine("Bet $10.00.\n");
         }
 
         public void DisplayCards() {
@@ -30,7 +30,7 @@ namespace BlackJack.Model {
                     Console.WriteLine($"{card.Rank} of {card.Suite}");
                 }
                 else {
-                    Console.WriteLine("Facedown card");
+                    Console.WriteLine("<<Facedown card>>");
                 }
             }
             Console.WriteLine();
