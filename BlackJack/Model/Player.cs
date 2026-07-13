@@ -20,12 +20,39 @@ namespace BlackJack.Model {
 
         public void Bet() {
             Bankroll -= 10M;
+            Console.WriteLine("Bet $10.00.");
+            DisplayBankroll();
         }
 
         public void DisplayCards() {
             foreach (Card card in Cards) {
-                Console.WriteLine($"{card.Rank} of {card.Suite}");
+                if (card.Revealed) {
+                    Console.WriteLine($"{card.Rank} of {card.Suite}");
+                }
+                else {
+                    Console.WriteLine("Facedown card");
+                }
             }
+            Console.WriteLine();
+        }
+
+        public void DisplayBankroll() {
+            Console.WriteLine($"Available bankroll: ${Bankroll}");
+        }
+
+        public int CalculateHandValue() {
+            int total = 0;
+
+            foreach (Card card in Cards) {
+                if (card.Value == -1) {
+                    total += 1;
+                }
+                else { 
+                    total += card.Value;
+                }
+            }
+
+            return total;
         }
     }
 }
