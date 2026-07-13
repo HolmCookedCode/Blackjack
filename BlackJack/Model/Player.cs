@@ -54,5 +54,13 @@ namespace BlackJack.Model {
 
             return total;
         }
+
+        public void DiscardHand(Deck deck) {
+            foreach (Card card in Cards) {
+                deck.DiscardPile.Add(card);
+            }
+
+            Cards.Clear();
+        }
     }
 }

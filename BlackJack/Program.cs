@@ -43,15 +43,17 @@ while (playing) {
 
     if (busted) {
         // player busted — no need for the dealer to even play
+        player.DisplayCards();
         Console.WriteLine("Busted. Bet lost.");
     }
     else {
-
         table.Dealer.Cards[1].Revealed = true;
-
+        table.DisplayDealerCards();
         while (table.Dealer.CalculateHandValue() < 17) {
             // dealer draws automatically, no choice involved
+            Console.WriteLine("Dealer less than 17. Drawing a card.");
             table.Deck.Deal(table.Dealer);
+            table.DisplayDealerCards();
         }
 
         // compare final hands — ONE check, not a loop
@@ -80,6 +82,9 @@ while (playing) {
         switch (input.ToUpper()) {
             case "Y":
                 continueCheck = false;
+                player.DiscardHand(table.Deck);
+                table.Dealer.DiscardHand(table.Deck);
+                Console.Clear();
                 break;
             case "N":
                 continueCheck = false;

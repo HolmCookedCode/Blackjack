@@ -10,6 +10,8 @@ namespace BlackJack.Model {
 
         public List<Card> Cards { get; set; } = new List<Card>();
 
+        public List<Card> DiscardPile { get; set; } = new List<Card>();
+
         public Deck() {
             // Create all 52 cards
             foreach (Suite suite in Enum.GetValues(typeof(Suite))) {
@@ -18,7 +20,10 @@ namespace BlackJack.Model {
                 }
             }
         }
-        public void Deal(Player player, bool revealed = true) { 
+        public void Deal(Player player, bool revealed = true) {
+            if (Cards.Count == 0) {
+                Reshuffle();
+            }
             int n = Cards.Count - 1; // last position
             Card drawnCard = Cards[n];
             drawnCard.Revealed = revealed;
@@ -38,6 +43,14 @@ namespace BlackJack.Model {
                 Cards[randSpot] = Cards[endPointer]; 
                 Cards[endPointer] = cardValue; 
             }
+        }
+
+        public void Reshuffle() {
+            foreach (Card card in DiscardPile) {
+                Cards.Add(card);
+            }
+            DiscardPile.Clear();
+            Shuffle();
         }
     }
 }
