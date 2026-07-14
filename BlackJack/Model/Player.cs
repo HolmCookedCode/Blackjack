@@ -42,13 +42,23 @@ namespace BlackJack.Model {
 
         public int CalculateHandValue() {
             int total = 0;
+            int acesCount = 0;
 
             foreach (Card card in Cards) {
                 if (card.Value == -1) {
-                    total += 1;
+                    acesCount++;
                 }
                 else { 
                     total += card.Value;
+                }
+            }
+
+            for (int i = 0; i < acesCount; i++) {
+                if (total + 11 <= 21) {
+                    total += 11;
+                }
+                else {
+                    total++;
                 }
             }
 
